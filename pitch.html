@@ -78,7 +78,224 @@ tr:last-child td { border-bottom: none; }
 .cta-btn:hover { background: var(--accent2); transform: translateY(-2px); }
 .cta-s { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; color: var(--text2); padding: 0.8rem 1.75rem; border-radius: 10px; font-size: 1rem; font-weight: 500; text-decoration: none; border: 1px solid var(--border2); transition: all 0.25s; }
 
-@media (max-width: 900px) { .slide { padding: 3rem 2rem; } .two, .three { grid-template-columns: 1fr; } }
+/* ─── MOCKUP VISUALS ─── */
+.mockup-browser {
+  background: #111118;
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.mockup-chrome {
+  background: #1c1c28;
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.mockup-dots { display: flex; gap: 5px; }
+.mockup-dots span { width: 10px; height: 10px; border-radius: 50%; }
+.mockup-dots span:nth-child(1) { background: #ef4444; }
+.mockup-dots span:nth-child(2) { background: #f59e0b; }
+.mockup-dots span:nth-child(3) { background: #22c55e; }
+.mockup-url {
+  flex: 1;
+  background: rgba(255,255,255,0.05);
+  border-radius: 6px;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-left: 0.5rem;
+}
+.mockup-body { padding: 1.5rem; }
+
+/* Hotel page mockup */
+.hotel-mock {
+  position: relative;
+}
+.hotel-mock-hero {
+  height: 120px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #1a3a4a, #2a1a3a);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.hotel-mock-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(transparent, rgba(0,0,0,0.6));
+}
+.hotel-mock-hero .mock-title {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 1rem;
+  z-index: 1;
+  font-family: var(--display);
+  font-size: 1rem;
+  font-weight: 700;
+}
+.hotel-mock-hero .mock-stars {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 1rem;
+  z-index: 1;
+  font-size: 0.7rem;
+  color: var(--warm);
+}
+.mock-review {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.6rem 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--text2);
+  font-style: italic;
+}
+.mock-cta-btn {
+  display: block;
+  text-align: center;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.5rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 0.75rem;
+}
+
+/* Floating particles */
+.particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--accent2);
+  border-radius: 50%;
+  opacity: 0;
+  animation: float-up 6s ease-in infinite;
+}
+.particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+.particle:nth-child(2) { left: 25%; animation-delay: 1.2s; width: 3px; height: 3px; }
+.particle:nth-child(3) { left: 45%; animation-delay: 2.4s; background: var(--warm); }
+.particle:nth-child(4) { left: 65%; animation-delay: 0.8s; width: 5px; height: 5px; }
+.particle:nth-child(5) { left: 80%; animation-delay: 3.2s; }
+.particle:nth-child(6) { left: 92%; animation-delay: 1.8s; background: var(--warm); width: 3px; height: 3px; }
+@keyframes float-up {
+  0% { transform: translateY(100vh); opacity: 0; }
+  10% { opacity: 0.4; }
+  90% { opacity: 0.4; }
+  100% { transform: translateY(-20px); opacity: 0; }
+}
+
+/* Animated pipeline */
+.anim-pipeline {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 2rem;
+}
+.anim-node {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  flex: 1;
+  position: relative;
+  transition: border-color 0.5s, box-shadow 0.5s;
+}
+.anim-node.lit {
+  border-color: var(--accent2);
+  box-shadow: 0 0 20px rgba(99,102,241,0.15);
+}
+.anim-node .nd-icon { font-size: 1.2rem; margin-bottom: 0.3rem; }
+.anim-node h4 { font-size: 0.78rem; font-weight: 700; }
+.anim-arrow {
+  color: var(--accent2);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  opacity: 0.3;
+  transition: opacity 0.5s;
+}
+.anim-arrow.lit { opacity: 1; }
+
+/* Animated bar chart */
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 80px;
+  margin-top: 1rem;
+}
+.bar-col {
+  flex: 1;
+  border-radius: 4px 4px 0 0;
+  transition: height 1s ease;
+  height: 0;
+}
+.bar-col.show { }
+
+/* Orbit ring */
+.orbit-wrap {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+.orbit-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: var(--glow);
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  z-index: 2;
+}
+.orbit-ring {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--border2);
+  border-radius: 50%;
+  animation: spin 20s linear infinite;
+}
+.orbit-item {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+.orbit-item:nth-child(1) { top: -16px; left: calc(50% - 16px); }
+.orbit-item:nth-child(2) { bottom: -16px; left: calc(50% - 16px); }
+.orbit-item:nth-child(3) { top: calc(50% - 16px); left: -16px; }
+.orbit-item:nth-child(4) { top: calc(50% - 16px); right: -16px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 900px) { .slide { padding: 3rem 2rem; } .two, .three { grid-template-columns: 1fr; } .anim-pipeline { flex-wrap: wrap; } .anim-arrow { display: none; } .orbit-wrap { width: 160px; height: 160px; } }
 @media (max-width: 640px) { .slide { padding: 4rem 1.5rem 5rem; } }
 </style>
 </head>
@@ -92,15 +309,38 @@ tr:last-child td { border-bottom: none; }
 
 <!-- 1 — TITLE -->
 <div class="slide active">
+  <div class="particles"><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div></div>
   <div class="glow g1"></div><div class="glow g2"></div>
   <div class="slide-inner">
-    <div class="label">Cinderlane</div>
-    <h1>Paste a Google Maps link.<br>Get a <em>hotel website</em>.</h1>
-    <p class="sub" style="margin-top:1.25rem;">AI-generated landing pages built from the hotel's own listing. Unique design, live URL, 60 seconds.</p>
-    <div style="margin-top:2.5rem;display:flex;gap:2.5rem;">
-      <div><div class="big">60s</div><div style="color:var(--muted);font-size:0.8rem;">To a live page</div></div>
-      <div><div class="big">$0</div><div style="color:var(--muted);font-size:0.8rem;">To start</div></div>
-      <div><div class="big">185</div><div style="color:var(--muted);font-size:0.8rem;">Tests passing</div></div>
+    <div class="two">
+      <div>
+        <div class="label">Cinderlane</div>
+        <h1>Paste a Google Maps link.<br>Get a <em>hotel website</em>.</h1>
+        <p class="sub" style="margin-top:1.25rem;">AI-generated landing pages built from the hotel's own listing. Unique design, live URL, 60 seconds.</p>
+        <div style="margin-top:2.5rem;display:flex;gap:2.5rem;">
+          <div><div class="big">60s</div><div style="color:var(--muted);font-size:0.8rem;">To a live page</div></div>
+          <div><div class="big">$0</div><div style="color:var(--muted);font-size:0.8rem;">To start</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="mockup-browser">
+          <div class="mockup-chrome">
+            <div class="mockup-dots"><span></span><span></span><span></span></div>
+            <div class="mockup-url">cinderlane.com/s/villa-sereno</div>
+          </div>
+          <div class="mockup-body">
+            <div class="hotel-mock">
+              <div class="hotel-mock-hero" style="background:linear-gradient(135deg, #1a3a2a, #0a2a3a);">
+                <span class="mock-title">Villa Sereno</span>
+                <span class="mock-stars">4.8 &#9733;</span>
+              </div>
+              <div class="mock-review">"The silence here is extraordinary. We slept with windows open and heard nothing but birds."</div>
+              <div class="mock-review">"Breakfast on the terrace with that view... we extended our stay twice."</div>
+              <div class="mock-cta-btn">Book Direct</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -112,9 +352,42 @@ tr:last-child td { border-bottom: none; }
     <div class="label">Problem</div>
     <h2>Great reviews. <em>Terrible websites.</em></h2>
     <div class="three">
-      <div class="card"><div class="ic">💸</div><h3>15-20% lost to OTAs</h3><p>Every booking through Booking.com costs the hotel commission. No direct channel means no alternative.</p></div>
-      <div class="card"><div class="ic">🗺️</div><h3>Content trapped on Google</h3><p>Great photos and reviews exist — but on a listing the hotel can't control, that looks like every other listing.</p></div>
-      <div class="card"><div class="ic">🚫</div><h3>No affordable design</h3><p>A proper website costs thousands. For a 9-room guesthouse, the economics don't work. So they go without.</p></div>
+      <div class="card">
+        <div class="ic">💸</div>
+        <h3>15-20% lost to OTAs</h3>
+        <p>Every booking through Booking.com costs the hotel commission. No direct channel means no alternative.</p>
+        <div class="bar-chart" id="ota-chart">
+          <div class="bar-col" style="background:var(--accent);opacity:0.3;" data-h="90%"></div>
+          <div class="bar-col" style="background:var(--accent);opacity:0.5;" data-h="75%"></div>
+          <div class="bar-col" style="background:var(--accent);opacity:0.6;" data-h="95%"></div>
+          <div class="bar-col" style="background:#ef4444;" data-h="20%"></div>
+          <div class="bar-col" style="background:#ef4444;opacity:0.8;" data-h="15%"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:0.6rem;color:var(--muted);margin-top:0.25rem;">
+          <span>Revenue</span>
+          <span style="color:#ef4444;">OTA cut</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ic">🗺️</div>
+        <h3>Content trapped on Google</h3>
+        <p>Great photos and reviews exist — but on a listing the hotel can't control, that looks like every other listing.</p>
+        <div style="margin-top:1rem;display:flex;gap:0.4rem;">
+          <div style="flex:1;height:50px;background:linear-gradient(135deg,#2a3a4a,#1a2a3a);border-radius:6px;"></div>
+          <div style="flex:1;height:50px;background:linear-gradient(135deg,#3a2a4a,#2a1a3a);border-radius:6px;"></div>
+          <div style="flex:1;height:50px;background:linear-gradient(135deg,#2a4a3a,#1a3a2a);border-radius:6px;"></div>
+        </div>
+        <div style="text-align:center;font-size:0.65rem;color:var(--muted);margin-top:0.4rem;">All look the same</div>
+      </div>
+      <div class="card">
+        <div class="ic">🚫</div>
+        <h3>No affordable design</h3>
+        <p>A proper website costs thousands. For a 9-room guesthouse, the economics don't work. So they go without.</p>
+        <div style="margin-top:1rem;text-align:center;">
+          <span style="font-size:1.8rem;font-weight:800;color:var(--muted);text-decoration:line-through;">$5,000</span>
+          <div style="font-size:0.65rem;color:var(--muted);margin-top:0.2rem;">Typical agency cost</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -131,17 +404,46 @@ tr:last-child td { border-bottom: none; }
         <p class="sub" style="margin-top:1rem;">The design responds to what makes each hotel distinct. Not a template.</p>
       </div>
       <div>
-        <div class="card" style="border-color:var(--accent);">
-          <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent2);margin-bottom:0.75rem;">Pipeline</div>
-          <div style="display:flex;flex-direction:column;gap:0.6rem;font-size:0.9rem;">
-            <div style="display:flex;align-items:center;gap:0.6rem;"><span style="color:var(--accent2);">1.</span> Paste Google Maps link</div>
-            <div style="display:flex;align-items:center;gap:0.6rem;"><span style="color:var(--accent2);">2.</span> Resolve listing, fetch photos + rating</div>
-            <div style="display:flex;align-items:center;gap:0.6rem;"><span style="color:var(--accent2);">3.</span> Read hotel's site for brand hints</div>
-            <div style="display:flex;align-items:center;gap:0.6rem;"><span style="color:var(--accent2);">4.</span> AI generates design spec</div>
-            <div style="display:flex;align-items:center;gap:0.6rem;"><span style="color:var(--accent2);">5.</span> Render + host at unique URL</div>
+        <div class="mockup-browser">
+          <div class="mockup-chrome">
+            <div class="mockup-dots"><span></span><span></span><span></span></div>
+            <div class="mockup-url">AI Design Engine</div>
+          </div>
+          <div class="mockup-body" style="padding:1rem;">
+            <div style="display:flex;gap:0.5rem;margin-bottom:0.75rem;">
+              <div style="flex:1;background:linear-gradient(135deg,#1a3a2a,#2a4a3a);height:40px;border-radius:6px;position:relative;overflow:hidden;">
+                <div style="position:absolute;bottom:4px;left:6px;font-size:0.5rem;color:rgba(255,255,255,0.7);">Retreat</div>
+              </div>
+              <div style="flex:1;background:linear-gradient(135deg,#3a2a1a,#4a3a2a);height:40px;border-radius:6px;position:relative;overflow:hidden;">
+                <div style="position:absolute;bottom:4px;left:6px;font-size:0.5rem;color:rgba(255,255,255,0.7);">Urban</div>
+              </div>
+              <div style="flex:1;background:linear-gradient(135deg,#1a2a3a,#2a3a4a);height:40px;border-radius:6px;position:relative;overflow:hidden;">
+                <div style="position:absolute;bottom:4px;left:6px;font-size:0.5rem;color:rgba(255,255,255,0.7);">Coastal</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:0.5rem;margin-bottom:0.6rem;">
+              <div style="width:14px;height:14px;border-radius:4px;background:#2d4a3a;"></div>
+              <div style="width:14px;height:14px;border-radius:4px;background:#c4a265;"></div>
+              <div style="width:14px;height:14px;border-radius:4px;background:#f5f0e8;"></div>
+              <div style="width:14px;height:14px;border-radius:4px;background:#1a1a2e;"></div>
+              <span style="font-size:0.6rem;color:var(--muted);margin-left:0.25rem;">AI-picked palette</span>
+            </div>
+            <div style="font-family:Georgia,serif;font-size:0.75rem;color:var(--text);margin-bottom:0.3rem;">"Where the mountain meets silence"</div>
+            <div style="font-size:0.6rem;color:var(--muted);">AI-generated headline from reviews</div>
           </div>
         </div>
       </div>
+    </div>
+    <div class="anim-pipeline" id="pipeline">
+      <div class="anim-node"><div class="nd-icon">📍</div><h4>Paste link</h4></div>
+      <div class="anim-arrow">&rarr;</div>
+      <div class="anim-node"><div class="nd-icon">🔍</div><h4>Resolve</h4></div>
+      <div class="anim-arrow">&rarr;</div>
+      <div class="anim-node"><div class="nd-icon">🌐</div><h4>Read site</h4></div>
+      <div class="anim-arrow">&rarr;</div>
+      <div class="anim-node"><div class="nd-icon">✨</div><h4>AI design</h4></div>
+      <div class="anim-arrow">&rarr;</div>
+      <div class="anim-node"><div class="nd-icon">🚀</div><h4>Live page</h4></div>
     </div>
   </div>
 </div>
@@ -150,26 +452,42 @@ tr:last-child td { border-bottom: none; }
 <div class="slide">
   <div class="glow g1"></div>
   <div class="slide-inner">
-    <div class="label">Business model</div>
-    <h2>The booking button is the <em>pricing axis</em></h2>
-    <table>
-      <thead><tr><th>Tier</th><th>CTA</th><th>Revenue</th></tr></thead>
-      <tbody>
-        <tr><td><strong style="color:var(--text);">Free</strong></td><td>OTA links (Booking, Agoda)</td><td>Affiliate commission</td></tr>
-        <tr><td><strong style="color:var(--text);">Paid</strong></td><td>Hotel's own booking button</td><td>Monthly subscription</td></tr>
-      </tbody>
-    </table>
-    <p class="sub" style="margin-top:1.5rem;">Self-selecting by capability. Hotels without a booking engine land on free naturally. Both halves monetize from day one.</p>
-    <div style="margin-top:2rem;">
-      <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent2);margin-bottom:0.75rem;">Growth layers</div>
-      <div style="display:flex;gap:0.5rem;font-size:0.85rem;color:var(--text2);flex-wrap:wrap;">
-        <span style="background:var(--bg2);border:1px solid var(--border);padding:0.4rem 0.9rem;border-radius:100px;">Affiliate <span style="color:var(--green);">now</span></span>
-        <span style="color:var(--muted);">&rarr;</span>
-        <span style="background:var(--bg2);border:1px solid var(--border);padding:0.4rem 0.9rem;border-radius:100px;">Subscription</span>
-        <span style="color:var(--muted);">&rarr;</span>
-        <span style="background:var(--bg2);border:1px solid var(--border);padding:0.4rem 0.9rem;border-radius:100px;">AI SEO services</span>
-        <span style="color:var(--muted);">&rarr;</span>
-        <span style="background:var(--bg2);border:1px solid var(--border);padding:0.4rem 0.9rem;border-radius:100px;">Direct bookings</span>
+    <div class="two">
+      <div>
+        <div class="label">Business model</div>
+        <h2>The booking button is the <em>pricing axis</em></h2>
+        <table>
+          <thead><tr><th>Tier</th><th>CTA</th><th>Revenue</th></tr></thead>
+          <tbody>
+            <tr><td><strong style="color:var(--text);">Free</strong></td><td>OTA links (Booking, Agoda)</td><td>Affiliate commission</td></tr>
+            <tr><td><strong style="color:var(--text);">Paid</strong></td><td>Hotel's own booking button</td><td>Monthly subscription</td></tr>
+          </tbody>
+        </table>
+        <p class="sub" style="margin-top:1.5rem;font-size:0.95rem;">Self-selecting by capability. Both halves monetize from day one.</p>
+        <div style="margin-top:1.5rem;">
+          <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent2);margin-bottom:0.75rem;">Growth layers</div>
+          <div style="display:flex;gap:0.5rem;font-size:0.85rem;color:var(--text2);flex-wrap:wrap;">
+            <span style="background:var(--bg2);border:1px solid var(--border);padding:0.4rem 0.9rem;border-radius:100px;">Affiliate <span style="color:var(--green);">now</span></span>
+            <span style="color:var(--muted);">&rarr;</span>
+            <span style="background:var(--bg2);border:1px solid var(--border);padding:0.4rem 0.9rem;border-radius:100px;">Subscription</span>
+            <span style="color:var(--muted);">&rarr;</span>
+            <span style="background:var(--bg2);border:1px solid var(--border);padding:0.4rem 0.9rem;border-radius:100px;">AI SEO</span>
+            <span style="color:var(--muted);">&rarr;</span>
+            <span style="background:var(--bg2);border:1px solid var(--border);padding:0.4rem 0.9rem;border-radius:100px;">Direct bookings</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="orbit-wrap">
+          <div class="orbit-center">🏨</div>
+          <div class="orbit-ring">
+            <div class="orbit-item">💰</div>
+            <div class="orbit-item">📈</div>
+            <div class="orbit-item">🔍</div>
+            <div class="orbit-item">📋</div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:1rem;font-size:0.8rem;color:var(--muted);">Hotel at center, revenue layers orbit</div>
       </div>
     </div>
   </div>
@@ -183,16 +501,36 @@ tr:last-child td { border-bottom: none; }
     <h2>We build the page first. <em>Then send it.</em></h2>
     <div class="two">
       <div>
-        <p class="sub">No sign-up forms, no onboarding. We generate pages for target hotels in bulk and cold-send the link. The page is the pitch.</p>
+        <p class="sub">No sign-up forms, no onboarding. We generate pages for target hotels in bulk and cold-send the link.</p>
         <div class="card" style="margin-top:1.5rem;border-color:var(--warm);background:rgba(245,158,11,0.04);">
           <p style="font-size:1.05rem;color:var(--text);font-style:italic;line-height:1.6;">"You're paying Booking.com 18% on every booking. Here's a page we already built for your property."</p>
         </div>
+        <div style="margin-top:1.5rem;">
+          <div class="three" style="grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-top:0;">
+            <div class="card stat" style="padding:1rem;"><div class="sv" style="font-size:1.4rem;">17.5M</div><div class="sl">Hotels</div></div>
+            <div class="card stat" style="padding:1rem;"><div class="sv" style="font-size:1.4rem;">~70%</div><div class="sl">Independent</div></div>
+            <div class="card stat" style="padding:1rem;"><div class="sv" style="font-size:1.4rem;">$28B+</div><div class="sl">OTA fees/yr</div></div>
+          </div>
+        </div>
       </div>
       <div>
-        <div class="three" style="grid-template-columns:1fr;gap:0.75rem;margin-top:0;">
-          <div class="card stat"><div class="sv">17.5M</div><div class="sl">Hotels worldwide</div></div>
-          <div class="card stat"><div class="sv">~70%</div><div class="sl">Are independent</div></div>
-          <div class="card stat"><div class="sv">$28B+</div><div class="sl">Annual OTA commission pool</div></div>
+        <div class="mockup-browser">
+          <div class="mockup-chrome">
+            <div class="mockup-dots"><span></span><span></span><span></span></div>
+            <div class="mockup-url">Email — Outreach</div>
+          </div>
+          <div class="mockup-body" style="padding:1.25rem;">
+            <div style="font-size:0.7rem;color:var(--muted);margin-bottom:0.5rem;">To: owner@villasereno.com</div>
+            <div style="font-size:0.7rem;color:var(--muted);margin-bottom:0.75rem;">Subject: <span style="color:var(--text);">Your hotel, without the 18% Booking.com cut</span></div>
+            <div style="font-size:0.75rem;color:var(--text2);line-height:1.6;">
+              Hi Maria,<br><br>
+              I noticed Villa Sereno has a 4.8 rating with guests raving about the terrace breakfast.<br><br>
+              We built this for you:<br>
+              <span style="color:var(--accent2);text-decoration:underline;">cinderlane.com/s/villa-sereno</span><br><br>
+              Your booking button. Zero commission.<br>
+              <span style="color:var(--muted);">— Bhaskar</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -228,7 +566,15 @@ tr:last-child td { border-bottom: none; }
         </div>
         <div class="card" style="margin-top:0.75rem;">
           <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.5rem;">Stack</div>
-          <p style="font-size:0.88rem;">Node/TS, Express, Postgres, OpenAI/Anthropic, Google Places API, Cloud Run</p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.35rem;">
+            <span style="background:rgba(255,255,255,0.05);border:1px solid var(--border);padding:0.25rem 0.6rem;border-radius:100px;font-size:0.72rem;">Node/TS</span>
+            <span style="background:rgba(255,255,255,0.05);border:1px solid var(--border);padding:0.25rem 0.6rem;border-radius:100px;font-size:0.72rem;">Express</span>
+            <span style="background:rgba(255,255,255,0.05);border:1px solid var(--border);padding:0.25rem 0.6rem;border-radius:100px;font-size:0.72rem;">Postgres</span>
+            <span style="background:rgba(255,255,255,0.05);border:1px solid var(--border);padding:0.25rem 0.6rem;border-radius:100px;font-size:0.72rem;">OpenAI</span>
+            <span style="background:rgba(255,255,255,0.05);border:1px solid var(--border);padding:0.25rem 0.6rem;border-radius:100px;font-size:0.72rem;">Anthropic</span>
+            <span style="background:rgba(255,255,255,0.05);border:1px solid var(--border);padding:0.25rem 0.6rem;border-radius:100px;font-size:0.72rem;">Places API</span>
+            <span style="background:rgba(255,255,255,0.05);border:1px solid var(--border);padding:0.25rem 0.6rem;border-radius:100px;font-size:0.72rem;">Cloud Run</span>
+          </div>
         </div>
       </div>
     </div>
@@ -237,6 +583,7 @@ tr:last-child td { border-bottom: none; }
 
 <!-- 7 — CLOSE -->
 <div class="slide">
+  <div class="particles"><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div></div>
   <div class="glow g1"></div><div class="glow g2"></div>
   <div class="slide-inner" style="text-align:center;">
     <div class="label">Cinderlane</div>
@@ -269,6 +616,7 @@ function go(n) {
   cnt.textContent = (C+1)+' / '+T;
   bar.style.width = ((C+1)/T*100)+'%';
   pb.disabled = C === 0; nb.disabled = C === T-1;
+  animateSlide(C);
 }
 pb.addEventListener('click', () => go(C-1));
 nb.addEventListener('click', () => go(C+1));
@@ -277,6 +625,28 @@ document.addEventListener('keydown', e => {
   else if (e.key==='ArrowLeft'||e.key==='ArrowUp') { e.preventDefault(); go(C-1); }
 });
 bar.style.width = (1/T*100)+'%'; pb.disabled = true;
+
+function animateSlide(idx) {
+  // Pipeline animation on slide 3
+  if (idx === 2) {
+    const nodes = document.querySelectorAll('#pipeline .anim-node');
+    const arrows = document.querySelectorAll('#pipeline .anim-arrow');
+    nodes.forEach(n => n.classList.remove('lit'));
+    arrows.forEach(a => a.classList.remove('lit'));
+    nodes.forEach((n, i) => {
+      setTimeout(() => {
+        n.classList.add('lit');
+        if (i > 0 && arrows[i-1]) arrows[i-1].classList.add('lit');
+      }, i * 400);
+    });
+  }
+  // Bar chart on slide 2
+  if (idx === 1) {
+    document.querySelectorAll('#ota-chart .bar-col').forEach(b => {
+      setTimeout(() => { b.style.height = b.dataset.h; }, 200);
+    });
+  }
+}
 </script>
 </body>
 </html>

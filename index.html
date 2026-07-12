@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cinderlane — AI-Powered Growth for Independent Hotels</title>
+<meta name="description" content="We help hotel owners use AI to drive more direct bookings, automate operations, and compete with the big chains. Built exclusively for hospitality.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #111118;
+  --bg-card: #16161f;
+  --bg-card-hover: #1c1c28;
+  --text-primary: #f0f0f5;
+  --text-secondary: #a0a0b8;
+  --text-muted: #6b6b80;
+  --accent: #6366f1;
+  --accent-light: #818cf8;
+  --accent-glow: rgba(99, 102, 241, 0.15);
+  --accent-warm: #f59e0b;
+  --accent-warm-glow: rgba(245, 158, 11, 0.15);
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.12);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle grid background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── NAV ─── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0 2rem;
+  transition: background 0.3s, backdrop-filter 0.3s, border-color 0.3s;
+  border-bottom: 1px solid transparent;
+}
+.nav.scrolled {
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom-color: var(--border);
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+.nav-logo {
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--accent-light); }
+.nav-links { display: flex; gap: 2rem; align-items: center; }
+.nav-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text-primary); }
+.nav-cta {
+  background: var(--accent) !important;
+  color: #fff !important;
+  padding: 0.55rem 1.3rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.2s;
+}
+.nav-cta:hover { background: var(--accent-light) !important; transform: translateY(-1px); }
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 0.5rem;
+}
+.mobile-menu-btn svg { width: 24px; height: 24px; }
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 8rem 2rem 6rem;
+  overflow: hidden;
+}
+.hero-glow {
+  position: absolute;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.12;
+  pointer-events: none;
+}
+.hero-glow-1 {
+  top: -200px;
+  right: -200px;
+  background: var(--accent);
+}
+.hero-glow-2 {
+  bottom: -300px;
+  left: -200px;
+  background: var(--accent-warm);
+  opacity: 0.08;
+}
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent-glow);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--accent-light);
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.6s ease both;
+}
+.hero-badge .dot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent-light);
+  border-radius: 50%;
+  animation: pulse-dot 2s ease infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6vw, 4.8rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  max-width: 800px;
+  animation: fadeInUp 0.6s 0.1s ease both;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent-light);
+}
+.hero-sub {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: var(--text-secondary);
+  max-width: 560px;
+  margin-top: 1.5rem;
+  line-height: 1.7;
+  animation: fadeInUp 0.6s 0.2s ease both;
+}
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.6s 0.3s ease both;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.85rem 2rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 0 30px rgba(99, 102, 241, 0.2);
+}
+.btn-primary:hover {
+  background: var(--accent-light);
+  transform: translateY(-2px);
+  box-shadow: 0 0 40px rgba(99, 102, 241, 0.3);
+}
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 0.85rem 2rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid var(--border-hover);
+  transition: all 0.25s;
+}
+.btn-secondary:hover {
+  color: var(--text-primary);
+  border-color: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.03);
+}
+.hero-proof {
+  margin-top: 3.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  animation: fadeInUp 0.6s 0.4s ease both;
+}
+.hero-proof-item {
+  display: flex;
+  flex-direction: column;
+}
+.hero-proof-item .num {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.hero-proof-item .label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+}
+.hero-proof-divider {
+  width: 1px;
+  height: 36px;
+  background: var(--border-hover);
+}
+
+/* ─── DEMO / HOW IT WORKS ─── */
+.demo-section {
+  padding: 7rem 2rem;
+  position: relative;
+}
+.demo-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--accent-glow), transparent 70%);
+  pointer-events: none;
+}
+.section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.section-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-light);
+  margin-bottom: 0.75rem;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  max-width: 600px;
+}
+.section-desc {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  max-width: 500px;
+  margin-top: 1rem;
+  line-height: 1.7;
+}
+
+/* Pipeline visual */
+.pipeline {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.pipeline-step {
+  background: var(--bg-card);
+  padding: 2.5rem 2rem;
+  position: relative;
+  transition: background 0.3s;
+}
+.pipeline-step:hover { background: var(--bg-card-hover); }
+.pipeline-step .step-num {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent-light);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.pipeline-step .step-num::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-hover);
+}
+.pipeline-step h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+.pipeline-step p {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+.pipeline-step .step-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--accent-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  font-size: 1.3rem;
+}
+
+/* ─── DEMO INPUT ─── */
+.demo-input-wrap {
+  margin-top: 4rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.demo-input-wrap::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-light), transparent);
+  opacity: 0.5;
+}
+.demo-input-wrap h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.demo-input-wrap p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+.demo-input-row {
+  display: flex;
+  gap: 0.75rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.demo-input {
+  flex: 1;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-hover);
+  color: var(--text-primary);
+  padding: 0.9rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.demo-input::placeholder { color: var(--text-muted); }
+.demo-input:focus { border-color: var(--accent); }
+.demo-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0 1.75rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.demo-btn:hover { background: var(--accent-light); }
+
+/* ─── DIFFERENTIATOR ─── */
+.diff-section {
+  padding: 7rem 2rem;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.diff-grid {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.diff-visual {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  position: relative;
+}
+.diff-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--accent-glow), transparent 60%);
+  pointer-events: none;
+}
+.review-example {
+  position: relative;
+  z-index: 1;
+}
+.review-bubble {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-hover);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-style: italic;
+  transition: all 0.4s;
+  cursor: default;
+}
+.review-bubble:hover {
+  border-color: var(--accent);
+  background: rgba(99, 102, 241, 0.05);
+}
+.review-bubble .stars {
+  color: var(--accent-warm);
+  font-style: normal;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+.review-arrow {
+  text-align: center;
+  color: var(--accent-light);
+  font-size: 1.5rem;
+  margin: 1.25rem 0;
+  animation: bounce-arrow 2s ease infinite;
+}
+@keyframes bounce-arrow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+.design-result {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+}
+.design-result .tag {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-light);
+  margin-bottom: 0.5rem;
+}
+.design-result h4 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.design-result p {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  margin-top: 0.35rem;
+}
+
+.diff-content h3 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.25;
+}
+.diff-content p {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+.diff-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.diff-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+.diff-features li .check {
+  color: var(--accent-light);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ─── PROBLEM ─── */
+.problem-section {
+  padding: 7rem 2rem;
+}
+.problem-grid {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.problem-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  transition: all 0.3s;
+  cursor: default;
+}
+.problem-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+.problem-card .icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 1.25rem;
+}
+.problem-card:nth-child(1) .icon { background: rgba(239, 68, 68, 0.1); }
+.problem-card:nth-child(2) .icon { background: rgba(245, 158, 11, 0.1); }
+.problem-card:nth-child(3) .icon { background: rgba(99, 102, 241, 0.1); }
+.problem-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+.problem-card p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* ─── PRICING / MODEL ─── */
+.pricing-section {
+  padding: 7rem 2rem;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.pricing-grid {
+  margin-top: 3.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.pricing-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+.pricing-card:hover { border-color: var(--border-hover); }
+.pricing-card.featured {
+  border-color: var(--accent);
+}
+.pricing-card.featured::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light));
+}
+.pricing-tag {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: var(--accent-light);
+  margin-bottom: 0.75rem;
+}
+.pricing-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.pricing-price {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+}
+.pricing-price span {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+.pricing-desc {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.pricing-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+.pricing-features li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+.pricing-features li .check {
+  color: var(--accent-light);
+  font-weight: 700;
+}
+
+/* ─── STRENGTHS ─── */
+.strengths-section {
+  padding: 7rem 2rem;
+}
+.strengths-grid {
+  margin-top: 3.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+.strength-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem 2.25rem;
+  display: flex;
+  gap: 1.25rem;
+  transition: all 0.3s;
+}
+.strength-card:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+}
+.strength-card .s-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--accent-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1.1rem;
+}
+.strength-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+.strength-card p {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+/* ─── METRICS ─── */
+.metrics-section {
+  padding: 5rem 2rem;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+.metric-card {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+.metric-card .metric-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent-light), var(--accent-warm));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.metric-card .metric-label {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 0.35rem;
+}
+
+/* ─── FAQ ─── */
+.faq-section {
+  padding: 7rem 2rem;
+}
+.faq-list {
+  margin-top: 3rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-align: left;
+  padding: 1.5rem 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  transition: color 0.2s;
+}
+.faq-question:hover { color: var(--accent-light); }
+.faq-icon {
+  font-size: 1.3rem;
+  transition: transform 0.3s;
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s;
+}
+.faq-item.open .faq-answer {
+  max-height: 300px;
+}
+.faq-answer-inner {
+  padding-bottom: 1.5rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* ─── FINAL CTA ─── */
+.final-cta {
+  padding: 8rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.final-cta::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(ellipse, var(--accent-glow), transparent 70%);
+  pointer-events: none;
+}
+.final-cta h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+.final-cta p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  max-width: 480px;
+  margin: 1.25rem auto 2.5rem;
+  position: relative;
+}
+.final-cta .btn-primary {
+  position: relative;
+}
+
+/* ─── FOOTER ─── */
+.footer {
+  padding: 3rem 2rem;
+  border-top: 1px solid var(--border);
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-left {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--text-secondary); }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── FLOATING CTA ─── */
+.floating-cta {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 90;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.9rem 1.75rem;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-decoration: none;
+  box-shadow: 0 4px 24px rgba(99, 102, 241, 0.35);
+  transition: all 0.3s;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+}
+.floating-cta.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.floating-cta:hover {
+  background: var(--accent-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 32px rgba(99, 102, 241, 0.45);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .pipeline { grid-template-columns: repeat(2, 1fr); }
+  .diff-grid { grid-template-columns: 1fr; }
+  .problem-grid { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 420px; }
+  .strengths-grid { grid-template-columns: 1fr; }
+  .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+  .mobile-menu-btn { display: block; }
+  .pipeline { grid-template-columns: 1fr; }
+  .demo-input-row { flex-direction: column; }
+  .demo-btn { padding: 0.9rem; }
+  .hero-proof { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .hero-proof-divider { width: 40px; height: 1px; }
+  .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+  .metrics-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">cinderlane<span>.</span></a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#how">How we work</a>
+      <a href="#why">Why us</a>
+      <a href="/product">Cinderlane Studio</a>
+      <a href="#contact" class="nav-cta">Talk to us</a>
+    </div>
+    <button class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menu">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="dot"></span> Built for hospitality</div>
+    <h1>AI that works for <em>your</em> hotel</h1>
+    <p class="hero-sub">We help independent hotels and hospitality brands use AI to drive more direct bookings, automate operations, and compete with the big chains.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">
+        Book a free consultation
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="#services" class="btn-secondary">See what we do</a>
+    </div>
+    <div class="hero-proof">
+      <div class="hero-proof-item">
+        <span class="num">100%</span>
+        <span class="label">Hospitality focused</span>
+      </div>
+      <div class="hero-proof-divider"></div>
+      <div class="hero-proof-item">
+        <span class="num">AI</span>
+        <span class="label">First approach</span>
+      </div>
+      <div class="hero-proof-divider"></div>
+      <div class="hero-proof-item">
+        <span class="num">Direct</span>
+        <span class="label">Bookings, not commissions</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="demo-section" id="services">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">What we do</div>
+      <h2 class="section-title">AI strategy and execution built around your property</h2>
+      <p class="section-desc">We don't sell software. We work with you to find where AI creates real value for your hotel — then we build it, run it, and measure it.</p>
+    </div>
+
+    <div class="pipeline reveal">
+      <div class="pipeline-step">
+        <div class="step-icon">🌐</div>
+        <div class="step-num">01</div>
+        <h3>AI-powered websites</h3>
+        <p>Landing pages and direct booking sites generated from your listing, photos, and brand — beautiful, fast, and built to convert.</p>
+        <p style="margin-top:0.75rem;"><a href="/product" style="color:var(--accent-light);font-size:0.85rem;font-weight:600;text-decoration:none;">Try Cinderlane Studio →</a></p>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-icon">🤖</div>
+        <div class="step-num">02</div>
+        <h3>Guest communication</h3>
+        <p>AI-assisted responses across WhatsApp, email, and booking platforms. Faster replies, fewer missed enquiries, consistent tone.</p>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-icon">📊</div>
+        <div class="step-num">03</div>
+        <h3>Revenue intelligence</h3>
+        <p>Pricing recommendations, demand forecasting, and competitor monitoring powered by AI — so you stop guessing and start optimising.</p>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-icon">⚙️</div>
+        <div class="step-num">04</div>
+        <h3>Operations automation</h3>
+        <p>Automate repetitive workflows — housekeeping schedules, review responses, reporting, inventory — and free up your team for guests.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<section class="diff-section" id="how">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">How we work</div>
+      <h2 class="section-title">From audit to outcomes in weeks, not months</h2>
+    </div>
+
+    <div class="diff-grid reveal">
+      <div class="diff-visual">
+        <div class="review-example">
+          <div class="review-bubble">
+            <span class="stars">Step 1 — Audit</span>
+            We analyse your current operations, tech stack, guest journey, and booking flow to find the highest-impact AI opportunities.
+          </div>
+          <div class="review-bubble">
+            <span class="stars">Step 2 — Build</span>
+            We implement the solutions — websites, automations, integrations — tailored to your property and your guests.
+          </div>
+          <div class="review-arrow">↓</div>
+          <div class="design-result">
+            <div class="tag">Step 3 — Measure</div>
+            <h4 style="font-family: var(--font-display); letter-spacing: 0.02em;">More bookings. Less busywork.</h4>
+            <p>We track results and iterate with you</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="diff-content">
+        <h3>We don't just advise. <br>We <em>build</em> and <em>run</em> it.</h3>
+        <p>Most AI consultants hand you a slide deck and leave. We stay until the results show up in your bookings, your response times, and your team's workload. Every engagement is measured against outcomes you care about.</p>
+        <ul class="diff-features">
+          <li><span class="check">✓</span> Full audit of your current operations and tech</li>
+          <li><span class="check">✓</span> Custom AI solutions built for your property</li>
+          <li><span class="check">✓</span> Hands-on implementation, not just recommendations</li>
+          <li><span class="check">✓</span> Ongoing support and optimisation</li>
+          <li><span class="check">✓</span> Clear metrics tied to revenue and efficiency</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMS -->
+<section class="problem-section">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center; max-width:600px; margin:0 auto;">
+      <div class="section-label">The challenge</div>
+      <h2 class="section-title" style="margin:0 auto;">Independent hotels are fighting an unfair fight</h2>
+    </div>
+
+    <div class="problem-grid reveal">
+      <div class="problem-card">
+        <div class="icon">💸</div>
+        <h3>OTAs eat your margins</h3>
+        <p>Booking.com and Expedia take 15–20% of every reservation. You're paying for guests who already found you — and you don't have the tools to bring them direct.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">🏢</div>
+        <h3>Big chains have AI teams. You don't.</h3>
+        <p>Marriott and Hilton spend millions on AI-powered pricing, personalisation, and automation. You're running everything manually — or with tools built for a different era.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">⏳</div>
+        <h3>Your team is stretched thin</h3>
+        <p>Answering enquiries, managing listings, updating rates, responding to reviews — there's no time left for the work that actually grows the business.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="strengths-section" id="why">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Why Cinderlane</div>
+      <h2 class="section-title">Built exclusively for hospitality</h2>
+      <p class="section-desc">We don't serve every industry. We go deep on one: helping hotel owners use AI to run better properties and keep more revenue.</p>
+    </div>
+
+    <div class="strengths-grid reveal">
+      <div class="strength-card">
+        <div class="s-icon">🏨</div>
+        <div>
+          <h3>Hospitality-only focus</h3>
+          <p>Every tool we build, every workflow we automate, every strategy we recommend — designed for how hotels actually work.</p>
+        </div>
+      </div>
+      <div class="strength-card">
+        <div class="s-icon">🧠</div>
+        <div>
+          <h3>AI-first, not AI-adjacent</h3>
+          <p>We don't bolt AI onto legacy systems. We start with what AI does best and build around it — faster, cheaper, and more effective.</p>
+        </div>
+      </div>
+      <div class="strength-card">
+        <div class="s-icon">📈</div>
+        <div>
+          <h3>Outcomes over outputs</h3>
+          <p>We measure success in direct bookings gained, hours saved, and revenue recovered — not features shipped or reports delivered.</p>
+        </div>
+      </div>
+      <div class="strength-card">
+        <div class="s-icon">🤝</div>
+        <div>
+          <h3>We stay until it works</h3>
+          <p>No slide decks and handoffs. We implement, integrate with your existing tools, train your team, and stick around to optimise.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section class="metrics-section">
+  <div class="section-inner">
+    <div class="metrics-grid reveal">
+      <div class="metric-card">
+        <div class="metric-value" data-target="40" data-suffix="%">0%</div>
+        <div class="metric-label">Faster guest response times</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value" data-target="3" data-suffix="x">0x</div>
+        <div class="metric-label">More direct booking conversions</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value" data-target="20" data-suffix="h">0h</div>
+        <div class="metric-label">Saved per week on operations</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value" data-target="18" data-suffix="%">0%</div>
+        <div class="metric-label">OTA commission recovered</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center; max-width:600px; margin:0 auto;">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title" style="margin:0 auto;">Questions we get asked</h2>
+    </div>
+
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What kind of hotels do you work with?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Independent hotels, boutique properties, guesthouses, and villas — typically 5 to 100 rooms. Properties that are too small for an in-house tech team but big enough that better tools would meaningfully change their business. We work with properties worldwide.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Do I need to understand AI to work with you?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Not at all. We handle the technology. You tell us what's slowing your team down, where you're losing bookings, and what you wish worked better. We figure out where AI fits and build it so your team can use it without thinking about the technology underneath.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>How is this different from buying hotel software?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Software tools solve one problem each — and you need to figure out which ones, integrate them, and learn them. We look at your whole operation, identify where AI creates the most value, and build a connected solution. Think of us as your AI team, not another vendor.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What does an engagement look like?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">It starts with a free consultation where we learn about your property and operations. If there's a fit, we run a focused audit (1–2 weeks), then build and deploy solutions over 4–6 weeks. After launch, we provide ongoing support and optimisation. No long-term contracts required.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What results can I expect?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">It depends on where you start, but typical outcomes include: more direct bookings (and less OTA commission), faster guest response times, hours saved on repetitive operations, and better pricing decisions. We set measurable targets at the start and track against them.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>How much does it cost?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Every property is different, so we scope and price based on what you actually need. The consultation is free. After the audit, we give you a clear proposal with fixed pricing — no surprises. For most properties, the cost is recovered within the first few months through commission savings and efficiency gains alone.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="contact">
+  <div class="section-inner reveal">
+    <h2>Ready to put AI to work for your hotel?</h2>
+    <p>Book a free consultation. We'll look at your property, your operations, and show you exactly where AI can make a difference.</p>
+    <a href="mailto:bhaskar@tria.so" class="btn-primary">
+      Talk to us
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left">&copy; 2026 Cinderlane. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="mailto:bhaskar@tria.so">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING CTA -->
+<a href="#contact" class="floating-cta" id="floating-cta">Talk to us →</a>
+
+<script>
+// Nav scroll effect
+const nav = document.getElementById('nav');
+const floatingCta = document.getElementById('floating-cta');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+  floatingCta.classList.toggle('visible', window.scrollY > 800);
+});
+
+// Reveal on scroll
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+revealElements.forEach(el => revealObserver.observe(el));
+
+// Metric counter animation
+const metricObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.dataset.target);
+      const suffix = el.dataset.suffix || '';
+      let current = 0;
+      const step = Math.max(1, Math.floor(target / 40));
+      const interval = setInterval(() => {
+        current += step;
+        if (current >= target) {
+          current = target;
+          clearInterval(interval);
+        }
+        el.textContent = current + suffix;
+      }, 30);
+      metricObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.metric-value').forEach(el => metricObserver.observe(el));
+
+// FAQ accordion
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// Mobile nav
+const style = document.createElement('style');
+style.textContent = `
+  @media (max-width: 640px) {
+    .nav-links.show {
+      display: flex !important;
+      flex-direction: column;
+      position: absolute;
+      top: 72px;
+      left: 0;
+      right: 0;
+      background: rgba(10,10,15,0.97);
+      backdrop-filter: blur(20px);
+      padding: 1.5rem 2rem 2rem;
+      gap: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+  }
+`;
+document.head.appendChild(style);
+</script>
+
+</body>
+</html>

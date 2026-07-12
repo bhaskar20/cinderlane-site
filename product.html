@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cinderlane Studio — AI-Generated Websites for Hotels</title>
+<meta name="description" content="Paste your Google Maps link. 60 seconds later, your hotel has a beautiful landing page — your brand, your photos, your booking button. No forms. No templates.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #111118;
+  --bg-card: #16161f;
+  --bg-card-hover: #1c1c28;
+  --text-primary: #f0f0f5;
+  --text-secondary: #a0a0b8;
+  --text-muted: #6b6b80;
+  --accent: #6366f1;
+  --accent-light: #818cf8;
+  --accent-glow: rgba(99, 102, 241, 0.15);
+  --accent-warm: #f59e0b;
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.12);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── NAV ─── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0 2rem;
+  transition: background 0.3s, backdrop-filter 0.3s, border-color 0.3s;
+  border-bottom: 1px solid transparent;
+}
+.nav.scrolled {
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom-color: var(--border);
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+.nav-logo {
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--accent-light); }
+.nav-links { display: flex; gap: 2rem; align-items: center; }
+.nav-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text-primary); }
+.nav-cta {
+  background: var(--accent) !important;
+  color: #fff !important;
+  padding: 0.55rem 1.3rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.2s;
+}
+.nav-cta:hover { background: var(--accent-light) !important; transform: translateY(-1px); }
+.nav-back {
+  font-size: 0.85rem;
+  color: var(--text-muted) !important;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.nav-back:hover { color: var(--text-secondary) !important; }
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 0.5rem;
+}
+.mobile-menu-btn svg { width: 24px; height: 24px; }
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 8rem 2rem 6rem;
+  overflow: hidden;
+}
+.hero-glow {
+  position: absolute;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.12;
+  pointer-events: none;
+}
+.hero-glow-1 { top: -200px; right: -200px; background: var(--accent); }
+.hero-glow-2 { bottom: -300px; left: -200px; background: var(--accent-warm); opacity: 0.08; }
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent-glow);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--accent-light);
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.6s ease both;
+}
+.hero-badge .dot {
+  width: 6px; height: 6px;
+  background: var(--accent-light);
+  border-radius: 50%;
+  animation: pulse-dot 2s ease infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6vw, 4.8rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  max-width: 800px;
+  animation: fadeInUp 0.6s 0.1s ease both;
+}
+.hero h1 em { font-style: italic; color: var(--accent-light); }
+.hero-sub {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: var(--text-secondary);
+  max-width: 560px;
+  margin-top: 1.5rem;
+  line-height: 1.7;
+  animation: fadeInUp 0.6s 0.2s ease both;
+}
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.6s 0.3s ease both;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.85rem 2rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 0 30px rgba(99, 102, 241, 0.2);
+}
+.btn-primary:hover {
+  background: var(--accent-light);
+  transform: translateY(-2px);
+  box-shadow: 0 0 40px rgba(99, 102, 241, 0.3);
+}
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 0.85rem 2rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid var(--border-hover);
+  transition: all 0.25s;
+}
+.btn-secondary:hover {
+  color: var(--text-primary);
+  border-color: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.03);
+}
+.hero-proof {
+  margin-top: 3.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  animation: fadeInUp 0.6s 0.4s ease both;
+}
+.hero-proof-item { display: flex; flex-direction: column; }
+.hero-proof-item .num { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); }
+.hero-proof-item .label { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.15rem; }
+.hero-proof-divider { width: 1px; height: 36px; background: var(--border-hover); }
+
+/* ─── SECTIONS ─── */
+.section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.section-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-light);
+  margin-bottom: 0.75rem;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  max-width: 600px;
+}
+.section-desc {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  max-width: 500px;
+  margin-top: 1rem;
+  line-height: 1.7;
+}
+
+/* ─── PIPELINE ─── */
+.pipeline-section {
+  padding: 7rem 2rem;
+  position: relative;
+}
+.pipeline-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--accent-glow), transparent 70%);
+  pointer-events: none;
+}
+.pipeline {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.pipeline-step {
+  background: var(--bg-card);
+  padding: 2.5rem 2rem;
+  transition: background 0.3s;
+}
+.pipeline-step:hover { background: var(--bg-card-hover); }
+.pipeline-step .step-num {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent-light);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.pipeline-step .step-num::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-hover);
+}
+.pipeline-step h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.75rem; }
+.pipeline-step p { color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6; }
+.pipeline-step .step-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: var(--accent-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  font-size: 1.3rem;
+}
+
+/* ─── DEMO INPUT ─── */
+.demo-input-wrap {
+  margin-top: 4rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.demo-input-wrap::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-light), transparent);
+  opacity: 0.5;
+}
+.demo-input-wrap h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+.demo-input-wrap p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 2rem; }
+.demo-input-row {
+  display: flex;
+  gap: 0.75rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.demo-input {
+  flex: 1;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-hover);
+  color: var(--text-primary);
+  padding: 0.9rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.demo-input::placeholder { color: var(--text-muted); }
+.demo-input:focus { border-color: var(--accent); }
+.demo-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0 1.75rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.demo-btn:hover { background: var(--accent-light); }
+
+/* ─── DIFFERENTIATOR ─── */
+.diff-section {
+  padding: 7rem 2rem;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.diff-grid {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.diff-visual {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  position: relative;
+}
+.diff-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--accent-glow), transparent 60%);
+  pointer-events: none;
+}
+.review-example { position: relative; z-index: 1; }
+.review-bubble {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-hover);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  transition: all 0.4s;
+  cursor: default;
+}
+.review-bubble:hover {
+  border-color: var(--accent);
+  background: rgba(99, 102, 241, 0.05);
+}
+.review-bubble .stars {
+  color: var(--accent-warm);
+  font-style: normal;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+.review-arrow {
+  text-align: center;
+  color: var(--accent-light);
+  font-size: 1.5rem;
+  margin: 1.25rem 0;
+  animation: bounce-arrow 2s ease infinite;
+}
+@keyframes bounce-arrow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+.design-result {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+}
+.design-result .tag {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-light);
+  margin-bottom: 0.5rem;
+}
+.design-result h4 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.design-result p { color: var(--text-muted); font-size: 0.82rem; margin-top: 0.35rem; }
+
+.diff-content h3 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.25;
+}
+.diff-content p {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+.diff-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.diff-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+.diff-features li .check {
+  color: var(--accent-light);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ─── PROBLEM ─── */
+.problem-section { padding: 7rem 2rem; }
+.problem-grid {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.problem-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  transition: all 0.3s;
+  cursor: default;
+}
+.problem-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+.problem-card .icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 1.25rem;
+}
+.problem-card:nth-child(1) .icon { background: rgba(239, 68, 68, 0.1); }
+.problem-card:nth-child(2) .icon { background: rgba(245, 158, 11, 0.1); }
+.problem-card:nth-child(3) .icon { background: rgba(99, 102, 241, 0.1); }
+.problem-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.6rem; }
+.problem-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
+
+/* ─── PRICING ─── */
+.pricing-section {
+  padding: 7rem 2rem;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.pricing-grid {
+  margin-top: 3.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.pricing-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+.pricing-card:hover { border-color: var(--border-hover); }
+.pricing-card.featured { border-color: var(--accent); }
+.pricing-card.featured::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light));
+}
+.pricing-tag {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: var(--accent-light);
+  margin-bottom: 0.75rem;
+}
+.pricing-card h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+.pricing-price { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.25rem; }
+.pricing-price span { font-size: 0.9rem; font-weight: 400; color: var(--text-muted); }
+.pricing-desc {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.pricing-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+.pricing-features li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+.pricing-features li .check { color: var(--accent-light); font-weight: 700; }
+
+/* ─── FAQ ─── */
+.faq-section { padding: 7rem 2rem; }
+.faq-list {
+  margin-top: 3rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.faq-item { border-bottom: 1px solid var(--border); }
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-align: left;
+  padding: 1.5rem 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  transition: color 0.2s;
+}
+.faq-question:hover { color: var(--accent-light); }
+.faq-icon {
+  font-size: 1.3rem;
+  transition: transform 0.3s;
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s;
+}
+.faq-item.open .faq-answer { max-height: 300px; }
+.faq-answer-inner {
+  padding-bottom: 1.5rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* ─── FINAL CTA ─── */
+.final-cta {
+  padding: 8rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.final-cta::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px; height: 400px;
+  background: radial-gradient(ellipse, var(--accent-glow), transparent 70%);
+  pointer-events: none;
+}
+.final-cta h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+.final-cta p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  max-width: 480px;
+  margin: 1.25rem auto 2.5rem;
+  position: relative;
+}
+.final-cta .btn-primary { position: relative; }
+
+/* ─── FOOTER ─── */
+.footer {
+  padding: 3rem 2rem;
+  border-top: 1px solid var(--border);
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-left { color: var(--text-muted); font-size: 0.85rem; }
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--text-secondary); }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── FLOATING CTA ─── */
+.floating-cta {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 90;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.9rem 1.75rem;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-decoration: none;
+  box-shadow: 0 4px 24px rgba(99, 102, 241, 0.35);
+  transition: all 0.3s;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+}
+.floating-cta.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.floating-cta:hover {
+  background: var(--accent-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 32px rgba(99, 102, 241, 0.45);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .pipeline { grid-template-columns: repeat(2, 1fr); }
+  .diff-grid { grid-template-columns: 1fr; }
+  .problem-grid { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 420px; }
+}
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+  .mobile-menu-btn { display: block; }
+  .pipeline { grid-template-columns: 1fr; }
+  .demo-input-row { flex-direction: column; }
+  .demo-btn { padding: 0.9rem; }
+  .hero-proof { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .hero-proof-divider { width: 40px; height: 1px; }
+  .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">cinderlane<span>.</span></a>
+    <div class="nav-links">
+      <a href="/" class="nav-back">&larr; Back to Cinderlane</a>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#try" class="nav-cta">Try it free</a>
+    </div>
+    <button class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menu">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="dot"></span> Cinderlane Studio</div>
+    <h1>A hotel website in <em>sixty seconds</em></h1>
+    <p class="hero-sub">Paste your Google Maps link. We pull your listing, generate a unique landing page with your brand, photos, and booking button — and hand you a live URL.</p>
+    <div class="hero-actions">
+      <a href="#try" class="btn-primary">
+        Try it — paste your link
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="#how" class="btn-secondary">See how it works</a>
+    </div>
+    <div class="hero-proof">
+      <div class="hero-proof-item">
+        <span class="num">60s</span>
+        <span class="label">Link to live page</span>
+      </div>
+      <div class="hero-proof-divider"></div>
+      <div class="hero-proof-item">
+        <span class="num">0</span>
+        <span class="label">Forms to fill</span>
+      </div>
+      <div class="hero-proof-divider"></div>
+      <div class="hero-proof-item">
+        <span class="num">Free</span>
+        <span class="label">To get started</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="pipeline-section" id="how">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">How it works</div>
+      <h2 class="section-title">From Google Maps link to live page. Nothing else required.</h2>
+      <p class="section-desc">No forms, no uploads, no design decisions. We pull your listing, generate a visual identity that fits your property, and give you a URL.</p>
+    </div>
+
+    <div class="pipeline reveal">
+      <div class="pipeline-step">
+        <div class="step-icon">📍</div>
+        <div class="step-num">01</div>
+        <h3>Paste your link</h3>
+        <p>Drop your Google Maps URL. We resolve the listing and pull your photos, rating, location, and details.</p>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-icon">✨</div>
+        <div class="step-num">02</div>
+        <h3>AI generates the design</h3>
+        <p>Our engine analyses your listing and picks a layout, palette, typography, and copy that fits <em>this</em> property — not a template.</p>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-icon">🎨</div>
+        <div class="step-num">03</div>
+        <h3>Page goes live</h3>
+        <p>A unique landing page is generated and hosted — your brand, your photos, your booking button, all front and centre.</p>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-icon">🚀</div>
+        <div class="step-num">04</div>
+        <h3>You approve & own it</h3>
+        <p>Review it, tweak anything you want, and click approve. Your page is indexed and ready to convert.</p>
+      </div>
+    </div>
+
+    <div class="demo-input-wrap reveal" id="try">
+      <h3>Try it now — paste your Google Maps link</h3>
+      <p>We'll generate your page and send it to you. No sign-up, no credit card.</p>
+      <div class="demo-input-row">
+        <input type="text" class="demo-input" placeholder="https://maps.google.com/maps/place/..." id="maps-input">
+        <button class="demo-btn" onclick="handleDemo()">Generate my page</button>
+      </div>
+      <p style="margin-top:1rem;font-size:0.82rem;color:var(--text-muted);" id="demo-status"></p>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIATOR -->
+<section class="diff-section">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">The difference</div>
+      <h2 class="section-title">AI-generated design, not another template</h2>
+    </div>
+
+    <div class="diff-grid reveal">
+      <div class="diff-visual">
+        <div class="review-example">
+          <div class="review-bubble">
+            <span class="stars">📍 Your Google Maps listing</span>
+            Photos, rating, location, guest feedback, business details — everything already on your listing, pulled automatically.
+          </div>
+          <div class="review-bubble">
+            <span class="stars">🌐 Your existing website</span>
+            Logo, brand colours, typefaces, booking link — extracted if you have one, so the page feels like yours.
+          </div>
+          <div class="review-arrow">↓</div>
+          <div class="design-result">
+            <div class="tag">AI-generated landing page</div>
+            <h4 style="font-family: var(--font-display); letter-spacing: 0.02em;">Your brand. Your story. Live.</h4>
+            <p>Every property gets a unique design</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="diff-content">
+        <h3>A page that looks like <em>your</em> property, not everyone else's.</h3>
+        <p>Plenty of tools generate websites. This one builds a visual identity from your actual listing — your photos, your location, what makes your property different. A boutique retreat gets a different look than a city hotel near the station.</p>
+        <ul class="diff-features">
+          <li><span class="check">✓</span> Visual identity derived from your listing and brand</li>
+          <li><span class="check">✓</span> Your real logo, palette, and typefaces</li>
+          <li><span class="check">✓</span> Booking button goes where <em>you</em> choose</li>
+          <li><span class="check">✓</span> Not indexed until you approve</li>
+          <li><span class="check">✓</span> Upload your own photos anytime</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMS IT SOLVES -->
+<section class="problem-section">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center; max-width:600px; margin:0 auto;">
+      <div class="section-label">Why this exists</div>
+      <h2 class="section-title" style="margin:0 auto;">The economics of hotel websites are broken</h2>
+    </div>
+
+    <div class="problem-grid reveal">
+      <div class="problem-card">
+        <div class="icon">💸</div>
+        <h3>Nobody will design a page for a 9-room guesthouse</h3>
+        <p>A proper website costs thousands and takes weeks. For most independent properties, the economics don't work. So they either have a bad one or none at all.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">🗺️</div>
+        <h3>Your best content is trapped on Google</h3>
+        <p>Your listing has great photos, real guest trust, and a high rating — but you can't control how it looks, and it sends bookings to OTAs, not to you.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">⏳</div>
+        <h3>Templates look like templates</h3>
+        <p>Wix, Squarespace, WordPress — they all produce the same generic result. Your page looks identical to every other hotel using the same theme.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center; max-width:600px; margin:0 auto;">
+      <div class="section-label">Simple pricing</div>
+      <h2 class="section-title" style="margin:0 auto;">Your booking button, your choice</h2>
+      <p class="section-desc" style="margin:1rem auto 0;">Where your booking button points decides your plan. Hotels that can take direct bookings pay a subscription. Hotels that can't, pay nothing.</p>
+    </div>
+
+    <div class="pricing-grid reveal">
+      <div class="pricing-card">
+        <div class="pricing-tag">Free tier</div>
+        <h3>Starter</h3>
+        <div class="pricing-price">Free</div>
+        <p class="pricing-desc">For properties without a direct booking engine. Your page links to OTAs — we earn affiliate commission, you pay nothing.</p>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> AI-generated landing page</li>
+          <li><span class="check">✓</span> Hosted on cinderlane.com</li>
+          <li><span class="check">✓</span> CTA links to Booking / Agoda / etc.</li>
+          <li><span class="check">✓</span> Photo upload</li>
+          <li><span class="check">✓</span> Customise copy & layout</li>
+        </ul>
+      </div>
+      <div class="pricing-card featured">
+        <div class="pricing-tag">Recommended</div>
+        <h3>Direct</h3>
+        <div class="pricing-price">TBD <span>/ month</span></div>
+        <p class="pricing-desc">For properties that can take bookings directly. Your button, your URL — WhatsApp, email, or your booking engine. Zero commission.</p>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> Everything in Free</li>
+          <li><span class="check">✓</span> Your own booking button</li>
+          <li><span class="check">✓</span> No aggregator links</li>
+          <li><span class="check">✓</span> Custom domain (coming soon)</li>
+          <li><span class="check">✓</span> Conversion analytics</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center; max-width:600px; margin:0 auto;">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title" style="margin:0 auto;">Questions we get asked</h2>
+    </div>
+
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>How does the AI generate my page?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">We pull your photos, rating, location, and details from Google Places — and your logo, colours, and booking link from your website if you have one. Our AI analyses everything and picks a layout, colour palette, typography, and copy that fits your property. The result is a hosted landing page at a unique URL.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Do I need to sign up or fill in any forms?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">No. Paste your Google Maps link and we generate the page. No account, no form, no onboarding. We send you the page — if you like it, you approve it. If you don't, nothing happens.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Will my page show up on Google before I approve it?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">No. Every page is marked <code>noindex</code> until you click approve. It exists as a private link — visible only to people who have the URL. Once approved, it becomes discoverable.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Where does the booking button go?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Wherever you want. Your own booking engine, WhatsApp, email, a phone number — it works for any channel. If you don't have a direct booking flow, the button links to OTAs and you pay nothing.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Can I use my own photos?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Yes — and you should. Google gives us about eight photos that are often the same lobby from four angles. Upload your own and the page quality jumps immediately. Photo upload is available on all plans.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What does "free" actually mean?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Transparent trade-off. If your property doesn't have a direct booking engine, the booking button links to OTAs and we earn affiliate commission from those platforms. You pay nothing. If you can take direct bookings, you pay a subscription and the button goes to your own site. You choose, knowing exactly what you're choosing.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="section-inner reveal">
+    <h2>Your hotel deserves better than a template</h2>
+    <p>Paste your Google Maps link and see what AI builds for your property. Free, no sign-up, sixty seconds.</p>
+    <a href="#try" class="btn-primary">
+      Generate my page
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left">&copy; 2026 Cinderlane. <a href="/" style="color:var(--text-muted);text-decoration:underline;text-underline-offset:2px;">cinderlane.com</a></div>
+    <div class="footer-links">
+      <a href="/">About Cinderlane</a>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="mailto:bhaskar@tria.so">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING CTA -->
+<a href="#try" class="floating-cta" id="floating-cta">Try it free →</a>
+
+<script>
+const nav = document.getElementById('nav');
+const floatingCta = document.getElementById('floating-cta');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+  floatingCta.classList.toggle('visible', window.scrollY > 800);
+});
+
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+revealElements.forEach(el => revealObserver.observe(el));
+
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+function handleDemo() {
+  const input = document.getElementById('maps-input');
+  const status = document.getElementById('demo-status');
+  const val = input.value.trim();
+  if (!val) {
+    status.textContent = 'Paste a Google Maps link to get started.';
+    status.style.color = 'var(--accent-warm)';
+    return;
+  }
+  if (!val.includes('google') && !val.includes('maps') && !val.includes('goo.gl')) {
+    status.textContent = 'That doesn\'t look like a Google Maps link. Try pasting the URL from your listing.';
+    status.style.color = 'var(--accent-warm)';
+    return;
+  }
+  status.style.color = 'var(--accent-light)';
+  status.textContent = 'Generating your page…';
+  setTimeout(() => {
+    status.innerHTML = '✓ We\'ve received your link! We\'ll email your page shortly. <br><span style="color:var(--text-muted);font-size:0.78rem;">Early access — pages are generated and reviewed for quality.</span>';
+  }, 2000);
+}
+
+const style = document.createElement('style');
+style.textContent = `
+  @media (max-width: 640px) {
+    .nav-links.show {
+      display: flex !important;
+      flex-direction: column;
+      position: absolute;
+      top: 72px;
+      left: 0;
+      right: 0;
+      background: rgba(10,10,15,0.97);
+      backdrop-filter: blur(20px);
+      padding: 1.5rem 2rem 2rem;
+      gap: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+  }
+`;
+document.head.appendChild(style);
+</script>
+
+</body>
+</html>

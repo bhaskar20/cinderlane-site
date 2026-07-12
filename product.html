@@ -788,7 +788,7 @@ body::before {
       <a href="#how">How it works</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
-      <a href="#try" class="nav-cta">Try it free</a>
+      <a href="https://placard-749881741342.us-central1.run.app/" class="nav-cta" target="_blank">Try it free</a>
     </div>
     <button class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menu">
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -805,7 +805,7 @@ body::before {
     <h1>A hotel website in <em>sixty seconds</em></h1>
     <p class="hero-sub">Paste your Google Maps link. We pull your listing, generate a unique landing page with your brand, photos, and booking button — and hand you a live URL.</p>
     <div class="hero-actions">
-      <a href="#try" class="btn-primary">
+      <a href="https://placard-749881741342.us-central1.run.app/" class="btn-primary" target="_blank">
         Try it — paste your link
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
@@ -868,12 +868,8 @@ body::before {
 
     <div class="demo-input-wrap reveal" id="try">
       <h3>Try it now — paste your Google Maps link</h3>
-      <p>We'll generate your page and send it to you. No sign-up, no credit card.</p>
-      <div class="demo-input-row">
-        <input type="text" class="demo-input" placeholder="https://maps.google.com/maps/place/..." id="maps-input">
-        <button class="demo-btn" onclick="handleDemo()">Generate my page</button>
-      </div>
-      <p style="margin-top:1rem;font-size:0.82rem;color:var(--text-muted);" id="demo-status"></p>
+      <p>We'll generate your page in sixty seconds. No sign-up, no credit card.</p>
+      <a href="https://placard-749881741342.us-central1.run.app/" class="demo-btn" target="_blank" style="display:inline-block;text-decoration:none;text-align:center;">Generate my page →</a>
     </div>
   </div>
 </section>
@@ -1061,7 +1057,7 @@ body::before {
   <div class="section-inner reveal">
     <h2>Your hotel deserves better than a template</h2>
     <p>Paste your Google Maps link and see what AI builds for your property. Free, no sign-up, sixty seconds.</p>
-    <a href="#try" class="btn-primary">
+    <a href="https://placard-749881741342.us-central1.run.app/" class="btn-primary" target="_blank">
       Generate my page
       <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>
@@ -1082,7 +1078,7 @@ body::before {
 </footer>
 
 <!-- FLOATING CTA -->
-<a href="#try" class="floating-cta" id="floating-cta">Try it free →</a>
+<a href="https://placard-749881741342.us-central1.run.app/" class="floating-cta" id="floating-cta" target="_blank">Try it free →</a>
 
 <script>
 const nav = document.getElementById('nav');
@@ -1110,26 +1106,6 @@ function toggleFaq(btn) {
   if (!wasOpen) item.classList.add('open');
 }
 
-function handleDemo() {
-  const input = document.getElementById('maps-input');
-  const status = document.getElementById('demo-status');
-  const val = input.value.trim();
-  if (!val) {
-    status.textContent = 'Paste a Google Maps link to get started.';
-    status.style.color = 'var(--accent-warm)';
-    return;
-  }
-  if (!val.includes('google') && !val.includes('maps') && !val.includes('goo.gl')) {
-    status.textContent = 'That doesn\'t look like a Google Maps link. Try pasting the URL from your listing.';
-    status.style.color = 'var(--accent-warm)';
-    return;
-  }
-  status.style.color = 'var(--accent-light)';
-  status.textContent = 'Generating your page…';
-  setTimeout(() => {
-    status.innerHTML = '✓ We\'ve received your link! We\'ll email your page shortly. <br><span style="color:var(--text-muted);font-size:0.78rem;">Early access — pages are generated and reviewed for quality.</span>';
-  }, 2000);
-}
 
 const style = document.createElement('style');
 style.textContent = `
